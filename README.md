@@ -1,3 +1,5 @@
+[![](/doc/assets/the-great-mic-cookook.jpg)]()
+
 The Great **MIC Cookbook** for Modern Applications!
 ===================
 
