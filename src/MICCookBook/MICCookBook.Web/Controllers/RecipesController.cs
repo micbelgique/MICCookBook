@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using MICCookBook.Web.Models;
+using MICCookBook.Web.ViewModels;
 
 namespace MICCookBook.Web.Controllers
 {
@@ -33,7 +34,7 @@ namespace MICCookBook.Web.Controllers
 
         // POST: Recipes/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CreateRecipeViewModel model)
         {
             try
             {
