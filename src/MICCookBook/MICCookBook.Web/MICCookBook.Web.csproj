@@ -180,9 +180,19 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701260924140_Init.cs" />
+    <Compile Include="Migrations\201701260924140_Init.Designer.cs">
+      <DependentUpon>201701260924140_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701260926124_AddRecipesAndEvaluations.cs" />
+    <Compile Include="Migrations\201701260926124_AddRecipesAndEvaluations.Designer.cs">
+      <DependentUpon>201701260926124_AddRecipesAndEvaluations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Evaluation.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
@@ -210,6 +220,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\style.css" />
     <Content Include="Scripts\agency.js" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\FontAwesome.otf" />
@@ -264,6 +275,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Recipes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -276,6 +288,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701260924140_Init.resx">
+      <DependentUpon>201701260924140_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701260926124_AddRecipesAndEvaluations.resx">
+      <DependentUpon>201701260926124_AddRecipesAndEvaluations.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

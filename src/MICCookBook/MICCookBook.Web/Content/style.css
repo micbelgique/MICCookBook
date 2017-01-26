@@ -2,7 +2,11 @@
     background-image: url('/content/img/header2.jpg');
 }
 
-
 section#contact {
-  background-image: url('/content/img/map-image.png');
+    background-image: url('/content/img/map-image.png');
+}
+
+.body-content {
+    margin-top: 70px;
+    min-height: 700px;
 }

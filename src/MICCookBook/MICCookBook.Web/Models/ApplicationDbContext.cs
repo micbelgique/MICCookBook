@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System;
+using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MICCookBook.Web.Models
 {
@@ -13,5 +15,8 @@ namespace MICCookBook.Web.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<Evaluation> Evaluations { get; set; }
     }
 }

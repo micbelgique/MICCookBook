@@ -8,17 +8,17 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 
-<body id="page-top">
+<body>
 
     <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top affix">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
+            <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">MIC CookBook</a>
+                <a class="navbar-brand" href="/">MIC CookBook</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -28,14 +28,28 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">Qu'est-ce ?</a>
+                        <a href="/recipes">Recettes</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#team">Team</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            <a href="/manage">Mon compte</a>
+                        </li>
+                        <li>
+                            <a href="#" id="logoff">Déconnexion</a>
+                            <div class="hide">
+                                <form id="logoff-form" method="POST" action="/account/logoff">
+                                    @Html.AntiForgeryToken()
+                                </form>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="/account/login">Connexion</a>
+                        </li>
+                    }
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -43,7 +57,11 @@
         <!-- /.container-fluid -->
     </nav>
 
-    @RenderBody()
+    <div class="bg-light-gray">
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+    </div>
 
     <footer>
         <div class="container">
