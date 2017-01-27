@@ -195,6 +195,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Evaluation.cs" />
     <Compile Include="Models\Recipe.cs" />
+    <Compile Include="Services\IFileStorageService.cs" />
+    <Compile Include="Services\LocalFileStorageService.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -209,6 +211,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\img\sq.png" />
     <Content Include="Content\img\team\renaud.jpg" />
     <Content Include="Content\img\team\fred.jpg" />
     <Content Include="Content\img\header2.jpg" />
@@ -283,6 +286,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\img\recipes\" />
     <Folder Include="Content\override\" />
+    <Folder Include="Views\Resource\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -6,7 +6,7 @@
 
 <h2>Publier une recette</h2>
 
-@using (Html.BeginForm("Create", "Recipes"))
+@using (Html.BeginForm("Create", "Recipes", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 

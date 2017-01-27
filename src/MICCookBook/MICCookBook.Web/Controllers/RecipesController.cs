@@ -5,7 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using MICCookBook.Web.Models;
+using MICCookBook.Web.Services;
 using MICCookBook.Web.ViewModels;
 
 namespace MICCookBook.Web.Controllers
@@ -16,7 +18,7 @@ namespace MICCookBook.Web.Controllers
         public async Task<ActionResult> Index()
         {
             var context = new ApplicationDbContext();
-            var recipes = await context.Recipes.ToListAsync();
+            var recipes = await context.Recipes.Include(r => r.Author).ToListAsync();
             return View(recipes);
         }
 
@@ -34,11 +36,25 @@ namespace MICCookBook.Web.Controllers
 
         // POST: Recipes/Create
         [HttpPost]
-        public ActionResult Create(CreateRecipeViewModel model)
+        public async Task<ActionResult> Create(CreateRecipeViewModel model)
         {
             try
             {
                 // TODO: Add insert logic here
+                var fileStorageService = new LocalFileStorageService(Server);
+                var picturePath = fileStorageService.StoreFile(model.PictureFile);
+
+                var recipe = new Recipe()
+                {
+                    Title = model.Title,
+                    Description = model.Description,
+                    Picture = picturePath,
+                    AuthorId = User.Identity.GetUserId()
+                };
+
+                var context = new ApplicationDbContext();
+                context.Recipes.Add(recipe);
+                await context.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }

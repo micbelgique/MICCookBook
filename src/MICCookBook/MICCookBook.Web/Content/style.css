@@ -10,3 +10,17 @@ section#contact {
     margin-top: 70px;
     min-height: 700px;
 }
+
+#portfolio .portfolio-item .portfolio-link {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+    #portfolio .portfolio-item .portfolio-link .img-sizer {
+        width: 100%;
+    }
+
+    #portfolio .portfolio-item .portfolio-link .portfolio-picture {
+        position: absolute;
+    }
