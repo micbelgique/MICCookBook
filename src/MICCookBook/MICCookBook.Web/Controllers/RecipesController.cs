@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using MICCookBook.Web.Extensions;
 using MICCookBook.Web.Models;
 using MICCookBook.Web.Services;
 using MICCookBook.Web.ViewModels;
@@ -18,14 +15,26 @@ namespace MICCookBook.Web.Controllers
         public async Task<ActionResult> Index()
         {
             var context = new ApplicationDbContext();
-            var recipes = await context.Recipes.Include(r => r.Author).ToListAsync();
+
+            var recipes = await context.Recipes
+                .Include(r => r.Author)
+                .Include(r => r.Evaluations)
+                .ToListAsync();
+
             return View(recipes);
         }
 
         // GET: Recipes/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id, string slug)
         {
-            return View();
+            var context = new ApplicationDbContext();
+            var recipe = await context.Recipes.FindAsync(id);
+            if (recipe != null && recipe.Title.ToSlug() == slug)
+            {
+                return View();
+            }
+
+            return HttpNotFound();
         }
 
         // GET: Recipes/Create
@@ -72,13 +81,28 @@ namespace MICCookBook.Web.Controllers
 
         // POST: Recipes/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public async Task<ActionResult> Edit(int id, CreateRecipeViewModel model)
         {
             try
             {
                 // TODO: Add update logic here
+                var context = new ApplicationDbContext();
+                var recipe = await context.Recipes.FindAsync(id);
+                if (recipe == null)
+                    return HttpNotFound();
 
-                return RedirectToAction("Index");
+                recipe.Title = model.Title;
+                recipe.Description = model.Description;
+                if (model.PictureFile != null)
+                {
+                    var fileStorageService = new LocalFileStorageService(Server);
+                    var picturePath = fileStorageService.StoreFile(model.PictureFile);
+                    model.Picture = picturePath;
+                }
+
+                await context.SaveChangesAsync();
+
+                return RedirectToAction("Details", new { id });
             }
             catch
             {

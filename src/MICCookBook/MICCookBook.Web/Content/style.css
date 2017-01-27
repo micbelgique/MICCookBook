@@ -11,6 +11,11 @@ section#contact {
     min-height: 700px;
 }
 
+#portfolio .portfolio-item .portfolio-hover.hover {
+    -ms-opacity: 1;
+    opacity: 1;
+}
+
 #portfolio .portfolio-item .portfolio-link {
     overflow: hidden;
     display: flex;
@@ -24,3 +29,5 @@ section#contact {
     #portfolio .portfolio-item .portfolio-link .portfolio-picture {
         position: absolute;
     }
+
+
