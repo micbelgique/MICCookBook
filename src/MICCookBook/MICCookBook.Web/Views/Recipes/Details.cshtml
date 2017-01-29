@@ -1,9 +1,16 @@
 ﻿@model MICCookBook.Web.Models.Recipe
 
 @{
-    ViewBag.Title = "Détails";
+    ViewBag.Title = Model.Title;
 }
 
-<!DOCTYPE html>
-
-
+<div class="row">
+    <div class="col-md-8">
+        <h2>@Model.Title</h2>
+        <img src="@Model.Picture" class="img-responsive" />
+        <p class="text-format">@Model.Description</p>
+    </div>
+    <div class="col-md-4">
+        <h4>Les avis</h4>
+    </div>
+</div>

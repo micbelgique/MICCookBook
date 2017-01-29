@@ -8,7 +8,12 @@ section#contact {
 
 .body-content {
     margin-top: 70px;
+    padding-top: 50px;
     min-height: 700px;
+}
+
+.text-format {
+    white-space: pre-line;
 }
 
 #portfolio .portfolio-item .portfolio-hover.hover {
@@ -29,5 +34,3 @@ section#contact {
     #portfolio .portfolio-item .portfolio-link .portfolio-picture {
         position: absolute;
     }
-
-

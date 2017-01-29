@@ -31,7 +31,7 @@ namespace MICCookBook.Web.Controllers
             var recipe = await context.Recipes.FindAsync(id);
             if (recipe != null && recipe.Title.ToSlug() == slug)
             {
-                return View();
+                return View(recipe);
             }
 
             return HttpNotFound();
