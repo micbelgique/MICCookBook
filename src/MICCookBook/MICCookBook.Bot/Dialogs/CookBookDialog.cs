@@ -14,13 +14,17 @@ using System.Web;
 
 namespace MICCookBook.Bot.Dialogs
 {
-    [LuisModel("", "")]
     [Serializable]
     public class CookBookDialog : LuisDialog<object>
     {
         public const string Entity_location = "Location";
         private Activity _message;
         private string AppSrv = "http://localhost:2011";
+
+        public CookBookDialog(params ILuisService[] services): base(services)
+        {
+            
+        }
 
         protected override async Task MessageReceived(IDialogContext context, IAwaitable<IMessageActivity> item)
         {

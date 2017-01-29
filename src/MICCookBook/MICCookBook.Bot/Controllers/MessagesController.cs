@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -8,6 +9,7 @@ using System.Web.Http.Description;
 using Microsoft.Bot.Connector;
 using Newtonsoft.Json;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.Luis;
 using MICCookBook.Bot.Dialogs;
 
 namespace MICCookBook.Bot
@@ -23,7 +25,10 @@ namespace MICCookBook.Bot
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                await Conversation.SendAsync(activity, () => new CookBookDialog());
+                await Conversation.SendAsync(activity, () => new CookBookDialog(
+                    new LuisService(new LuisModelAttribute(
+                        ConfigurationManager.AppSettings["ModelId"],
+                        ConfigurationManager.AppSettings["SubscriptionKey"]))));
             }
             else
             {
