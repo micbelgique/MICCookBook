@@ -17,9 +17,7 @@ namespace MICCookBook.Web.Controllers.API
         {
             var context = new ApplicationDbContext();
 
-            var recipes = context.Recipes
-                .Include(r => r.Author)
-                .Include(r => r.Evaluations);
+            var recipes = context.Recipes;
 
             return recipes.ToList();
         }
