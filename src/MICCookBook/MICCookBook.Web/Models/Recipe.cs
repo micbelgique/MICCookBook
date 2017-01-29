@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MICCookBook.Web.Models
 {
-    public class Recipe
+    public class Recipe : IBaseModel
     {
-        [Key]
         public int Id { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
+
         public string Title { get; set; }
         public string Description { get; set; }
         public string Picture { get; set; }

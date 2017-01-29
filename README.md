@@ -24,6 +24,15 @@ Structure du projet
 -------------
 Todo
 
+Roadmap
+-------------
+Dans l'optique de montrer toute une série de chouettes fonctionnalités à implémenter dans vos projets, nous pensons intégrer les points suivants dans un délai indéterminé :
+
+* Éditeur Markdown pour la description des recettes
+* Identification Facebook
+* ...
+
+
 Auteurs
 -------------
 * [Renaud Dumont](http://twitter.com/dumontrenaud)
