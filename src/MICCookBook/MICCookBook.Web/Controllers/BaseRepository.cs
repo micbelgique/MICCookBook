@@ -1,6 +1,4 @@
-﻿
-
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 using MICCookBook.Web.Repository;
 using Microsoft.AspNet.Identity.Owin;

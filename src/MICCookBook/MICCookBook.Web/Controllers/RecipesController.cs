@@ -4,9 +4,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
 using MICCookBook.Web.BusinessLayer;
 using MICCookBook.Web.Extensions;
-using MICCookBook.Web.Models;
 using MICCookBook.Web.Repository;
-using MICCookBook.Web.Services;
 using MICCookBook.Web.ViewModels;
 
 namespace MICCookBook.Web.Controllers
