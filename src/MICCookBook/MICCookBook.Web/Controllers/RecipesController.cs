@@ -11,11 +11,6 @@ namespace MICCookBook.Web.Controllers
 {
     public class RecipesController : BaseController
     {
-        public RecipesController()
-        {
-
-        }
-
         // GET: Recipes
         public async Task<ActionResult> Index()
         {
