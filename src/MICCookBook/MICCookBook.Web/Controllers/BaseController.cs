@@ -8,9 +8,6 @@ namespace MICCookBook.Web.Controllers
     public class BaseController : Controller
     {
         protected UnitOfWork UnitOfWork { get; private set; }
-        public BaseController()
-        {
-        }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {

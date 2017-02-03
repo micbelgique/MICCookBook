@@ -1,33 +1,22 @@
 ﻿using MICCookBook.Web.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace MICCookBook.Web.Controllers.API
 {
-    public class EvaluationsController : ApiController
+    public class EvaluationsController : BaseApiController
     {
         // GET api/<controller>
-        public IEnumerable<Evaluation> Get()
+        public async Task<IEnumerable<Evaluation>> Get()
         {
-            var context = new ApplicationDbContext();
-
-            var evaluations = context.Evaluations;
-
-            return evaluations.ToList();
+            return await UnitOfWork.Evaluations.GetAllAsync();
         }
 
         // GET api/<controller>/5
-        public Evaluation Get(int id)
+        public async Task<Evaluation> Get(int id)
         {
-            var context = new ApplicationDbContext();
-
-            var evaluation = context.Evaluations.Find(id);
-
-            return evaluation;
+            return await UnitOfWork.Evaluations.GetById(id);
         }
 
         // POST api/<controller>

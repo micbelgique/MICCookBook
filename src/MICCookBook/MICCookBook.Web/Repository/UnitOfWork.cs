@@ -10,6 +10,7 @@ namespace MICCookBook.Web.Repository
     {
         private readonly ApplicationDbContext _context;
         private RecipeRepository _recipeRepository;
+        private EvaluationRepository _evaluationRepository;
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -27,6 +28,8 @@ namespace MICCookBook.Web.Repository
         }
 
         public RecipeRepository Recipes => _recipeRepository ?? (_recipeRepository = new RecipeRepository(_context));
+
+        public EvaluationRepository Evaluations => _evaluationRepository ?? (_evaluationRepository = new EvaluationRepository(_context));
 
         public async Task SaveChangesAsync()
         {

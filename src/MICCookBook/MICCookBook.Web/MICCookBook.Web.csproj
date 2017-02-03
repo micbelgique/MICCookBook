@@ -188,9 +188,10 @@
     <Compile Include="BusinessLayer\BaseManagement.cs" />
     <Compile Include="BusinessLayer\RecipeManagement.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\API\BaseApiController.cs" />
     <Compile Include="Controllers\API\EvaluationsController.cs" />
     <Compile Include="Controllers\API\RecipesController.cs" />
-    <Compile Include="Controllers\BaseRepository.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="Models\IBaseModel.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Repository\BaseModelRepository.cs" />
+    <Compile Include="Repository\EvaluationRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\RecipeRepository.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />

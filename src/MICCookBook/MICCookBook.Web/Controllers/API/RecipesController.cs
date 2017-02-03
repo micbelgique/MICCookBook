@@ -1,35 +1,23 @@
 ﻿using MICCookBook.Web.Models;
-using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace MICCookBook.Web.Controllers.API
 {
-    public class RecipesController : ApiController
+    public class RecipesController : BaseApiController
     {
 
         // GET api/<controller>
-        public List<Recipe> Get()
+        public async Task<List<Recipe>> Get()
         {
-            var context = new ApplicationDbContext();
-
-            var recipes = context.Recipes;
-
-            return recipes.ToList();
+            return await UnitOfWork.Recipes.GetAllAsync();
         }
 
         // GET api/<controller>/5
-        public Recipe Get(int id)
+        public async Task<Recipe> Get(int id)
         {
-            var context = new ApplicationDbContext();
-
-            var recipe = context.Recipes.Find(id);
-
-            return recipe;
+            return await UnitOfWork.Recipes.GetById(id);
         }
 
         // POST api/<controller>
