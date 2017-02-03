@@ -188,9 +188,15 @@
     <Compile Include="BusinessLayer\BaseManagement.cs" />
     <Compile Include="BusinessLayer\RecipeManagement.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\API\Auth\AddChallengeOnUnauthorizedResult.cs" />
+    <Compile Include="Controllers\API\Auth\AuthenticationFailureResult.cs" />
+    <Compile Include="Controllers\API\Auth\HttpAuthenticationChallengeContextExtensions.cs" />
     <Compile Include="Controllers\API\BaseApiController.cs" />
     <Compile Include="Controllers\API\EvaluationsController.cs" />
+    <Compile Include="Controllers\API\Auth\IdentityBasicAuthenticationAttribute.cs" />
+    <Compile Include="Controllers\API\ProfileController.cs" />
     <Compile Include="Controllers\API\RecipesController.cs" />
+    <Compile Include="Controllers\API\Auth\BaiscAuthenticationAttribute.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />

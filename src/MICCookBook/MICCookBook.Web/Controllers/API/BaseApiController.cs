@@ -13,12 +13,6 @@ namespace MICCookBook.Web.Controllers.API
     {
         protected UnitOfWork UnitOfWork { get; private set; }
 
-        protected override void Initialize(HttpControllerContext controllerContext)
-        {
-            UnitOfWork = HttpContext.Current.GetOwinContext().Get<UnitOfWork>();
-            base.Initialize(controllerContext);
-        }
-
         public override Task<HttpResponseMessage> ExecuteAsync(HttpControllerContext controllerContext, CancellationToken cancellationToken)
         {
             UnitOfWork = HttpContext.Current.GetOwinContext().Get<UnitOfWork>();

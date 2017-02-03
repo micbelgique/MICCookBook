@@ -45,10 +45,14 @@ namespace MICCookBook.Web.Controllers
         {
             try
             {
-                var recipeManagement = HttpContext.GetOwinContext().Get<RecipeManagement>();
-                await recipeManagement.CreateNewRecipe(model, User);
+                if (ModelState.IsValid)
+                {
+                    var recipeManagement = HttpContext.GetOwinContext().Get<RecipeManagement>();
+                    await recipeManagement.CreateNewRecipe(model, User);
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                return View(model);
             }
             catch
             {

@@ -25,5 +25,7 @@
         <input type="file" name="PictureFile" id="PictureFile" accept="image/*" class="form-control" />
     </div>
 
+    @Html.ValidationSummary(false, "Veuillez corriger les erreurs suivantes : ", new { @class = "text-danger" }, "p")
+
     <button type="submit" class="btn btn-xl">Publier</button>
 }
