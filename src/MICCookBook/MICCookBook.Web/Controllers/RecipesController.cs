@@ -1,25 +1,20 @@
-﻿using System.Data.Entity;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using MICCookBook.Web.BusinessLayer;
 using MICCookBook.Web.Extensions;
-using MICCookBook.Web.Models;
-using MICCookBook.Web.Services;
+using MICCookBook.Web.Repository;
 using MICCookBook.Web.ViewModels;
 
 namespace MICCookBook.Web.Controllers
 {
-    public class RecipesController : Controller
+    public class RecipesController : BaseController
     {
         // GET: Recipes
         public async Task<ActionResult> Index()
         {
-            var context = new ApplicationDbContext();
-
-            var recipes = await context.Recipes
-                .Include(r => r.Author)
-                .Include(r => r.Evaluations)
-                .ToListAsync();
+            var recipes = await UnitOfWork.Recipes.GetAllAsync(r => r.Author);
 
             return View(recipes);
         }
@@ -27,8 +22,9 @@ namespace MICCookBook.Web.Controllers
         // GET: Recipes/Details/5
         public async Task<ActionResult> Details(int id, string slug)
         {
-            var context = new ApplicationDbContext();
-            var recipe = await context.Recipes.FindAsync(id);
+            var unitOfWork = HttpContext.GetOwinContext().Get<UnitOfWork>();
+
+            var recipe = await unitOfWork.Recipes.GetById(id);
             if (recipe != null && recipe.Title.ToSlug() == slug)
             {
                 return View(recipe);
@@ -49,21 +45,8 @@ namespace MICCookBook.Web.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-                var fileStorageService = new LocalFileStorageService(Server);
-                var picturePath = fileStorageService.StoreFile(model.PictureFile);
-
-                var recipe = new Recipe()
-                {
-                    Title = model.Title,
-                    Description = model.Description,
-                    Picture = picturePath,
-                    AuthorId = User.Identity.GetUserId()
-                };
-
-                var context = new ApplicationDbContext();
-                context.Recipes.Add(recipe);
-                await context.SaveChangesAsync();
+                var recipeManagement = HttpContext.GetOwinContext().Get<RecipeManagement>();
+                await recipeManagement.CreateNewRecipe(model, User);
 
                 return RedirectToAction("Index");
             }
@@ -86,25 +69,13 @@ namespace MICCookBook.Web.Controllers
             try
             {
                 // TODO: Add update logic here
-                var context = new ApplicationDbContext();
-                var recipe = await context.Recipes.FindAsync(id);
-                if (recipe == null)
-                    return HttpNotFound();
-
-                recipe.Title = model.Title;
-                recipe.Description = model.Description;
-                if (model.PictureFile != null)
-                {
-                    var fileStorageService = new LocalFileStorageService(Server);
-                    var picturePath = fileStorageService.StoreFile(model.PictureFile);
-                    model.Picture = picturePath;
-                }
-
-                await context.SaveChangesAsync();
-
+                model.Id = id;
+                var recipeManagement = HttpContext.GetOwinContext().Get<RecipeManagement>();
+                await recipeManagement.UpdateRecipe(model, User);
+                
                 return RedirectToAction("Details", new { id });
             }
-            catch
+            catch 
             {
                 return View();
             }

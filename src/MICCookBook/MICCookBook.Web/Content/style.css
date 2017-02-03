@@ -17,7 +17,6 @@ section#contact {
 }
 
 #portfolio .portfolio-item .portfolio-hover.hover {
-    -ms-opacity: 1;
     opacity: 1;
 }
 

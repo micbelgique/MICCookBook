@@ -3,9 +3,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
+using MICCookBook.Web.BusinessLayer;
 using Owin;
 using MICCookBook.Web.Models;
+using MICCookBook.Web.Repository;
 
 namespace MICCookBook.Web
 {
@@ -16,6 +17,8 @@ namespace MICCookBook.Web
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext<UnitOfWork>(UnitOfWork.Create);
+            app.CreatePerOwinContext<RecipeManagement>(RecipeManagement.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
@@ -34,7 +37,7 @@ namespace MICCookBook.Web
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.

@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace MICCookBook.Web.Models
 {
-    public class Evaluation
+    public class Evaluation : IBaseModel
     {
         public int Id { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
 
         public int Rating { get; set; }
         public string Comment { get; set; }
