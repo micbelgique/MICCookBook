@@ -28,8 +28,6 @@ namespace MICCookBook.Web.Repository
         public async Task<List<Recipe>> GetAllAsync(Expression<Func<Recipe, bool>> predicate)
         {
             return await Context.Recipes
-                .Include(r => r.Author)
-                .Include(r => r.Evaluations)
                 .Where(predicate)
                 .ToListAsync();
         }

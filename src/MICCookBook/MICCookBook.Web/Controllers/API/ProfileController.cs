@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
@@ -19,7 +21,7 @@ namespace MICCookBook.Web.Controllers.API
         public async Task<List<Recipe>> GetRecipes()
         {
             var userId = User.Identity.GetUserId();
-            return await UnitOfWork.Recipes.GetAllAsync(r => r.AuthorId == userId);
+            return await UnitOfWork.Recipes.GetAllAsync(r => r.AuthorId == userId, true);
         }
     }
 }
