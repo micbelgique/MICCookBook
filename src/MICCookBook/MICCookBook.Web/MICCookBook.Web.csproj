@@ -218,6 +218,7 @@
       <DependentUpon>201701291507534_CreatedAndModifiedOn.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ContextFactory.cs" />
     <Compile Include="Models\Evaluation.cs" />
     <Compile Include="Models\IBaseModel.cs" />
     <Compile Include="Models\Recipe.cs" />
