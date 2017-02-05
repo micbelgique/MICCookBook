@@ -6,9 +6,11 @@
 
 <h2>Publier une recette</h2>
 
-@using (Html.BeginForm("Create", "Recipes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Recipes", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.Id)
 
     <div class="form-group">
         @Html.LabelFor(model => model.Title)
@@ -25,7 +27,7 @@
         <input type="file" name="PictureFile" id="PictureFile" accept="image/*" class="form-control" />
     </div>
 
-    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    @Html.ValidationSummary(false, "" ,new { @class = "text-danger" })
 
-    <button type="submit" class="btn btn-xl">Publier</button>
+    <button type="submit" class="btn btn-xl">Mettre à jour</button>
 }

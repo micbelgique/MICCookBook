@@ -2,7 +2,7 @@
 
 namespace MICCookBook.Web.Models
 {
-    public interface IBaseModel
+    public interface IBaseModel : IIdentifiable<int>
     {
         int Id { get; set; }
         DateTime CreatedOn { get; set; }

@@ -3,6 +3,7 @@ using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
+using MICCookBook.Web.BusinessLayer.Exceptions;
 using MICCookBook.Web.Models;
 using MICCookBook.Web.Services;
 using MICCookBook.Web.ViewModels;
@@ -41,7 +42,7 @@ namespace MICCookBook.Web.BusinessLayer
             // retrieve model from database
             var recipe = await UnitOfWork.Recipes.GetById(model.Id);
             if (recipe == null)
-                throw new ObjectNotFoundException("The entry you are looking for doesn't exist in our database.");
+                throw new EntityNotFoundException<Recipe, int>(model.Id, typeof(Recipe));
 
             // update model
             recipe.Title = model.Title;

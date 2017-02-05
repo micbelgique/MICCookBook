@@ -42,5 +42,10 @@ namespace MICCookBook.Web.Repository
         {
             return Context.Set<T>().Add(entity);
         }
+
+        public async Task Delete(T entity)
+        {
+            Context.Set<T>().Remove(entity);
+        }
     }
 }

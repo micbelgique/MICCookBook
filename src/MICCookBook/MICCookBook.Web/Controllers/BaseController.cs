@@ -2,9 +2,11 @@
 using System.Web.Mvc;
 using MICCookBook.Web.Repository;
 using Microsoft.AspNet.Identity.Owin;
+using MICCookBook.Web.Controllers.ErrorHandlers;
 
 namespace MICCookBook.Web.Controllers
 {
+    [EntityNotFoundHandler]
     public class BaseController : Controller
     {
         protected UnitOfWork UnitOfWork { get; private set; }

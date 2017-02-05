@@ -186,6 +186,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BusinessLayer\BaseManagement.cs" />
+    <Compile Include="BusinessLayer\Exceptions\EntityNotFoundException.cs" />
     <Compile Include="BusinessLayer\RecipeManagement.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\Auth\AddChallengeOnUnauthorizedResult.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Controllers\API\RecipesController.cs" />
     <Compile Include="Controllers\API\Auth\BaiscAuthenticationAttribute.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ErrorHandlers\EntityNotFoundHandlerAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
@@ -221,6 +223,7 @@
     <Compile Include="Migrations\MigrationsContextFactory.cs" />
     <Compile Include="Models\Evaluation.cs" />
     <Compile Include="Models\IBaseModel.cs" />
+    <Compile Include="Models\IIdentifiable.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Repository\BaseModelRepository.cs" />
     <Compile Include="Repository\EvaluationRepository.cs" />
@@ -314,6 +317,8 @@
     <Content Include="Views\Recipes\Index.cshtml" />
     <Content Include="Views\Recipes\Create.cshtml" />
     <Content Include="Views\Recipes\Details.cshtml" />
+    <Content Include="Views\Recipes\Edit.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,7 +12,7 @@ namespace MICCookBook.Web.Repository
         private RecipeRepository _recipeRepository;
         private EvaluationRepository _evaluationRepository;
 
-        public UnitOfWork(ApplicationDbContext context)
+        private UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -22,11 +22,6 @@ namespace MICCookBook.Web.Repository
             return new UnitOfWork(context.Get<ApplicationDbContext>());
         }
 
-        public void Dispose()
-        {
-            _context?.Dispose();
-        }
-
         public RecipeRepository Recipes => _recipeRepository ?? (_recipeRepository = new RecipeRepository(_context));
 
         public EvaluationRepository Evaluations => _evaluationRepository ?? (_evaluationRepository = new EvaluationRepository(_context));
@@ -34,6 +29,11 @@ namespace MICCookBook.Web.Repository
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
+        }
+
+        public void Dispose()
+        {
+            _context?.Dispose();
         }
     }
 
