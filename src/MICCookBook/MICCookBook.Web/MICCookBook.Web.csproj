@@ -49,6 +49,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin.Cors, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity.Hooks, Version=1.2.0.0, Culture=neutral, PublicKeyToken=e22f38667d64ae75, processorArchitecture=MSIL">
@@ -60,12 +64,20 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -189,15 +201,11 @@
     <Compile Include="BusinessLayer\Exceptions\EntityNotFoundException.cs" />
     <Compile Include="BusinessLayer\RecipeManagement.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\API\Auth\AddChallengeOnUnauthorizedResult.cs" />
-    <Compile Include="Controllers\API\Auth\AuthenticationFailureResult.cs" />
-    <Compile Include="Controllers\API\Auth\HttpAuthenticationChallengeContextExtensions.cs" />
+    <Compile Include="Controllers\API\Auth\ApplicationOAuthProvider.cs" />
     <Compile Include="Controllers\API\BaseApiController.cs" />
     <Compile Include="Controllers\API\EvaluationsController.cs" />
-    <Compile Include="Controllers\API\Auth\IdentityBasicAuthenticationAttribute.cs" />
     <Compile Include="Controllers\API\ProfileController.cs" />
     <Compile Include="Controllers\API\RecipesController.cs" />
-    <Compile Include="Controllers\API\Auth\BaiscAuthenticationAttribute.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorHandlers\EntityNotFoundHandlerAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -253,6 +261,7 @@
     <Content Include="Content\img\header.jpg" />
     <Content Include="Content\img\map-image.png" />
     <Content Include="Content\img\team\thomas.jpg" />
+    <Content Include="Content\override\bootstrap.override.css" />
     <Content Include="Views\favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -323,7 +332,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\img\recipes\" />
-    <Folder Include="Content\override\" />
     <Folder Include="Views\Resource\" />
   </ItemGroup>
   <ItemGroup>

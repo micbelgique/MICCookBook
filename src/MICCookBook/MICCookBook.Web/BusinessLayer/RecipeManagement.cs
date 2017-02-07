@@ -1,5 +1,4 @@
-﻿using System.Data.Entity.Core;
-using System.Security.Principal;
+﻿using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;

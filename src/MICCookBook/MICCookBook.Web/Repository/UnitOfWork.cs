@@ -24,6 +24,18 @@ namespace MICCookBook.Web.Repository
 
         public RecipeRepository Recipes => _recipeRepository ?? (_recipeRepository = new RecipeRepository(_context));
 
+
+        //public RecipeRepository Recipes
+        //{
+        //    get
+        //    {
+        //        if (_recipeRepository != null)
+        //            return _recipeRepository;
+        //        _recipeRepository = new RecipeRepository(_context);
+        //        return _recipeRepository;
+        //    }
+        //}
+
         public EvaluationRepository Evaluations => _evaluationRepository ?? (_evaluationRepository = new EvaluationRepository(_context));
 
         public async Task SaveChangesAsync()

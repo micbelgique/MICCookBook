@@ -1,16 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
 using MICCookBook.Web.BusinessLayer;
-using MICCookBook.Web.Controllers.ErrorHandlers;
 using MICCookBook.Web.Extensions;
 using MICCookBook.Web.Repository;
 using MICCookBook.Web.ViewModels;
 
 namespace MICCookBook.Web.Controllers
 {
+
     public class RecipesController : BaseController
     {
         // GET: Recipes
@@ -86,7 +85,7 @@ namespace MICCookBook.Web.Controllers
 
             await recipeManagement.UpdateRecipe(model, User);
 
-            return RedirectToAction("Details", new { model.Id, slug= model.Title.ToSlug() });
+            return RedirectToAction("Details", new { model.Id, slug = model.Title.ToSlug() });
         }
 
         // GET: Recipes/Delete/5

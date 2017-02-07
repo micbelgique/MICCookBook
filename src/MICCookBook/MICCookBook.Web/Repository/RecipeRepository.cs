@@ -21,7 +21,7 @@ namespace MICCookBook.Web.Repository
                     .Include(r => r.Author)
                     .Include(r => r.Evaluations)
                     .ToListAsync();
-
+            
             return await GetAllAsync();
         }
 
