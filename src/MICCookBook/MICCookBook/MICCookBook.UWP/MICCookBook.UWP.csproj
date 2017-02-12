@@ -152,9 +152,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MICCookBook\MICCookBook.XCore.csproj">
+    <ProjectReference Include="..\MICCookBook\MICCookBook.XFCore.csproj">
       <Project>{9ECC60F1-DA3C-4554-9896-B531F83083D7}</Project>
-      <Name>MICCookBook.XCore</Name>
+      <Name>MICCookBook.XFCore</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
