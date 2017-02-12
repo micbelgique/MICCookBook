@@ -129,6 +129,8 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="AppSettings.config" />
+    <None Include="Properties\PublishProfiles\miccookbot - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\miccookbot - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
