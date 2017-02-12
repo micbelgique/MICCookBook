@@ -6,6 +6,7 @@ using Microsoft.Bot.Connector;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -18,7 +19,7 @@ namespace MICCookBook.Bot.Dialogs
     public class CookBookDialog : LuisDialog<object>
     {
         public const string Entity_location = "Location";
-        private Activity _message;
+        private static Activity _message;
         private string AppSrv = "http://localhost:2011";
 
         public CookBookDialog(params ILuisService[] services): base(services)
@@ -48,6 +49,31 @@ namespace MICCookBook.Bot.Dialogs
             context.Wait(MessageReceived);
         }
 
+        [LuisIntent("Identification")]
+        public async Task Identification(IDialogContext context, LuisResult result)
+        {
+            Activity replyToConversation = _message.CreateReply();
+            replyToConversation.Recipient = _message.From;
+            replyToConversation.Type = "message";
+
+            replyToConversation.Attachments = new List<Attachment>();
+            List<CardAction> cardButtons = new List<CardAction>();
+            CardAction plButton = new CardAction()
+            {
+                Value = $"{System.Configuration.ConfigurationManager.AppSettings["AppWebSite"]}/Home/Login?userid={HttpUtility.UrlEncode(_message.From.Id)}",
+                Type = "signin",
+                Title = "Authentication Required"
+            };
+            cardButtons.Add(plButton);
+            SigninCard plCard = new SigninCard("Merci de vous identifier dans le MicCookBook", new List<CardAction>() { plButton });
+            Attachment plAttachment = plCard.ToAttachment();
+            replyToConversation.Attachments.Add(plAttachment);
+
+            await context.PostAsync(replyToConversation);
+            context.Wait(MessageReceived);
+        }
+
+
         [LuisIntent("GetRecipes")]
         public async Task GetRecipes(IDialogContext context, LuisResult result)
         {
@@ -55,9 +81,7 @@ namespace MICCookBook.Bot.Dialogs
 
             using (var client = new HttpClient())
             {
-                var url = $"{AppSrv}/api/Recipes";
-
-                var httpResponse = await client.GetAsync(url);
+                var httpResponse = await client.GetAsync(ConfigurationManager.AppSettings["ApiUrlRecipes"]);
 
                 if (httpResponse.StatusCode == HttpStatusCode.OK)
 
@@ -70,30 +94,35 @@ namespace MICCookBook.Bot.Dialogs
                     replyToConversation.Type = "message";
                     replyToConversation.Attachments = new List<Attachment>();
 
-                    List<CardAction> cardButtons = new List<CardAction>();
-
-                    CardAction plButtonInfo = new CardAction()
-                    {
-                        Value = $"{AppSrv}",
-                        Type = "openUrl",
-                        Title = "Plus d'info"
-                    };
-                    cardButtons.Add(plButtonInfo);
-                    CardAction plButtonOk = new CardAction()
-                    {
-                        Value = $"{AppSrv}",
-                        Type = "openUrl",
-                        Title = "Miam !"
-                    };
-                    cardButtons.Add(plButtonOk);
-
                     foreach (var recipe in recipes)
                     {
+                        List<CardAction> cardButtons = new List<CardAction>();
+
+                        CardAction plButtonInfo = new CardAction()
+                        {
+                            Value = $"{ConfigurationManager.AppSettings["WebAppUrl"]}",
+                            Type = "openUrl",
+                            Title = "Voir sur le site"
+                        };
+                        cardButtons.Add(plButtonInfo);
+                        CardAction plButtonOk = new CardAction()
+                        {
+                            Value = "Donne moi des infos sur cette recette",
+                            Type = "imBack",
+                            Title = "Commencer !"
+                        };
+                        cardButtons.Add(plButtonOk);
+
+
+                        List<CardImage> cardImages = new List<CardImage>();
+                        cardImages.Add(new CardImage(url: $"{ ConfigurationManager.AppSettings["WebAppUrl"] }{recipe.Picture}"));
+
                         HeroCard plCard = new HeroCard()
                         {
                             Title = recipe.Title,
                             Text = recipe.Description,
-                            Subtitle = "Pig Latin Wikipedia Page",
+                            // Subtitle = recipe.,  ToDo: Ajouter l'auteur de la recette
+                            Images = cardImages,
                             Buttons = cardButtons
                         };
 
@@ -105,7 +134,14 @@ namespace MICCookBook.Bot.Dialogs
                     context.Wait(MessageReceived);
                 }
             }
+        }
 
+        [LuisIntent("GetRecipeDetails")]
+        public async Task GetRecipeDetails(IDialogContext context, LuisResult result)
+        {
+            string message = "Ok on va regarder à cette recette";
+            await context.PostAsync(message);
+            context.Wait(MessageReceived);
         }
     }
 }
