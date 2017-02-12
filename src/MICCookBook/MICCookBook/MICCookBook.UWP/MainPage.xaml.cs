@@ -21,7 +21,7 @@ namespace MICCookBook.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new MICCookBook.App());
+            LoadApplication(new XFCore.App());
         }
     }
 }

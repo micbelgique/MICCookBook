@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
 
-namespace MICCookBook
+namespace MICCookBook.XFCore.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class MenuView : ContentPage
     {
-        public MainPage()
+        public MenuView()
         {
             InitializeComponent();
         }

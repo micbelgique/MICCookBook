@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using MICCookBook.XFCore.Views;
 using Xamarin.Forms;
 
-namespace MICCookBook
+namespace MICCookBook.XFCore
 {
     public partial class App : Application
     {
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MICCookBook.MainPage();
+            MainPage = new SplashScreen();
         }
 
         protected override void OnStart()
