@@ -18,9 +18,7 @@ namespace MICCookBook.Bot.Dialogs
     [Serializable]
     public class CookBookDialog : LuisDialog<object>
     {
-        public const string Entity_location = "Location";
         private static Activity _message;
-        private string AppSrv = "http://localhost:2011";
 
         public CookBookDialog(params ILuisService[] services): base(services)
         {
