@@ -17,7 +17,8 @@ namespace MICCookBook.SDK
         public CookBookClient()
         {
             HttpClient = new HttpClient();
-            HttpClient.BaseAddress = new Uri("http://localhost:2011/api");
+            //HttpClient.BaseAddress = new Uri("http://miccookbook.azurewebsites.net/api/", UriKind.Absolute);
+            HttpClient.MaxResponseContentBufferSize = 256000;
         }
 
         public async Task<List<Recipe>> GetRecipes()
@@ -25,7 +26,8 @@ namespace MICCookBook.SDK
             // TODO : make this more generic
             try
             {
-                var content = await HttpClient.GetStringAsync("recipes");
+                var response = await HttpClient.GetAsync(new Uri("http://miccookbook.azurewebsites.net/api/recipes"));
+                var content = await response.Content.ReadAsStringAsync();
                 var recipes = JsonConvert.DeserializeObject<List<Recipe>>(content);
                 return recipes;
             }
