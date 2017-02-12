@@ -9,9 +9,10 @@ using MICCookBook.Web.ViewModels;
 
 namespace MICCookBook.Web.Controllers
 {
-
+    [Authorize]
     public class RecipesController : BaseController
     {
+        [AllowAnonymous]
         // GET: Recipes
         public async Task<ActionResult> Index()
         {
@@ -20,6 +21,7 @@ namespace MICCookBook.Web.Controllers
             return View(recipes);
         }
 
+        [AllowAnonymous]
         // GET: Recipes/Details/5
         public async Task<ActionResult> Details(int id, string slug)
         {
