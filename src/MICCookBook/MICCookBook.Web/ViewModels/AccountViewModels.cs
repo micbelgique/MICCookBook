@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using MICCookBook.Web.Globalization;
 
-namespace MICCookBook.Web.Models
+namespace MICCookBook.Web.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {
@@ -58,7 +59,7 @@ namespace MICCookBook.Web.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "RememberMe", ResourceType = typeof(Resources))]
         public bool RememberMe { get; set; }
     }
 
