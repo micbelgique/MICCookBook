@@ -1,5 +1,5 @@
 [![](/doc/assets/the-great-mic-cookook.jpg)]()
-Coucou
+
 The Great **MIC Cookbook** for Modern Applications!
 ===================
 
