@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using MICCookBook.Web.Globalization;
+using MICCookBook.Web.Globalization.UI;
 
 namespace MICCookBook.Web.ViewModels
 {
