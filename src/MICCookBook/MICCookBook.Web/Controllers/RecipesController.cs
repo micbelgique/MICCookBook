@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Microsoft.AspNet.Identity.Owin;
 using MICCookBook.Web.BusinessLayer;
 using MICCookBook.Web.Extensions;
@@ -28,12 +29,17 @@ namespace MICCookBook.Web.Controllers
             var unitOfWork = HttpContext.GetOwinContext().Get<UnitOfWork>();
 
             var recipe = await unitOfWork.Recipes.GetById(id);
-            if (recipe != null && recipe.Title.ToSlug() == slug)
+            if (recipe == null)
+                return HttpNotFound();
+
+            // Check the slug and returns a 301 if not correct.
+            var actualSlug = recipe.Title.ToSlug();
+            if (actualSlug != slug)
             {
-                return View(recipe);
+                return RedirectToActionPermanent("Details", new { id, slug = actualSlug });
             }
 
-            return HttpNotFound();
+            return View(recipe);
         }
 
         // GET: Recipes/Create
