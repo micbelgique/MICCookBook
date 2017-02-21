@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using MICCookBook.XFCore.Services;
+using MICCookBook.XFCore.Services.Navigation;
 
 namespace MICCookBook.XFCore.ViewModels
 {
@@ -30,12 +31,13 @@ namespace MICCookBook.XFCore.ViewModels
 
             SimpleIoc.Default.Register<MasterNavigation>();
             SimpleIoc.Default.Register<SplashScreenViewModel>();
-            SimpleIoc.Default.Register<MainPageViewModel>();
+            SimpleIoc.Default.Register<RecipeListViewModel>();
+            SimpleIoc.Default.Register<MenuViewModel>();
         }
 
         public SplashScreenViewModel SplashScreen => ServiceLocator.Current.GetInstance<SplashScreenViewModel>();
-
-        public MainPageViewModel MainPage => ServiceLocator.Current.GetInstance<MainPageViewModel>();
+        public RecipeListViewModel RecipesList => ServiceLocator.Current.GetInstance<RecipeListViewModel>();
+        public MenuViewModel Menu => ServiceLocator.Current.GetInstance<MenuViewModel>();
 
         public static void Cleanup()
         {

@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MICCookBook.XFCore.Services;
+using MICCookBook.XFCore.Services.Navigation;
 using MICCookBook.XFCore.Views;
+using Xamarin.Forms;
 
 namespace MICCookBook.XFCore.ViewModels
 {
@@ -13,9 +15,9 @@ namespace MICCookBook.XFCore.ViewModels
             EnterCommand = new RelayCommand(OnEnterCommand);
         }
 
-        private void OnEnterCommand()
+        private async void OnEnterCommand()
         {
-            MasterNavigation.ReplaceRoot<MainPage>();
+            await (Application.Current as App).Navigation.Navigate<MainPage>();
         }
     }
 }

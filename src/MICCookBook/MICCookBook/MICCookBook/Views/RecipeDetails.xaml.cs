@@ -2,9 +2,9 @@
 
 namespace MICCookBook.XFCore.Views
 {
-    public partial class RecipeListDetail : ContentPage
+    public partial class RecipeDetails : ContentPage
     {
-        public RecipeListDetail()
+        public RecipeDetails()
         {
             InitializeComponent();
         }

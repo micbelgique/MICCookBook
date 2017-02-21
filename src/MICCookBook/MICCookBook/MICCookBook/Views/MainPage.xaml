@@ -3,13 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:MICCookBook.XFCore.Views;assembly=MICCookBook.XFCore"
              x:Class="MICCookBook.XFCore.Views.MainPage"
-             Title="Home"
              MasterBehavior="Popover">
 
-
-
   <MasterDetailPage.Detail>
-    <views:RecipeList></views:RecipeList>
+    <NavigationPage>
+      <x:Arguments>
+        <Page>
+          <views:FeaturedView></views:FeaturedView>
+        </Page>
+      </x:Arguments>
+    </NavigationPage>
   </MasterDetailPage.Detail>
 
   <MasterDetailPage.Master>
