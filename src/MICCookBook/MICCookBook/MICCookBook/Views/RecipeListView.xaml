@@ -1,11 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MICCookBook.XFCore.Views.RecipeList"
-             BindingContext="{Binding MainPage, Source={StaticResource Locator}}"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+             x:Class="MICCookBook.XFCore.Views.RecipeListView"
+             BindingContext="{Binding RecipesList, Source={StaticResource Locator}}"
              Title="Home">
+  <ContentPage.Behaviors>
+    <behaviors:EventHandlerBehavior EventName="Appearing" >
+      <behaviors:InvokeCommandAction Command="{Binding AppearingCommand}" />
+    </behaviors:EventHandlerBehavior>
+  </ContentPage.Behaviors>
 
-  <ListView ItemsSource="{Binding Recipes}">
+  <ListView ItemsSource="{Binding Recipes}"
+            IsPullToRefreshEnabled="True"
+            RowHeight="150"
+            RefreshCommand="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout VerticalOptions="FillAndExpand"
+                       Orientation="Horizontal"
+                       Padding="20,10,0,10"
+                       Spacing="20">
+
+            
+            <Image Source="{Binding AbsolutePicture}" 
+                   WidthRequest="70" 
+                   HeightRequest="70"
+                   Aspect="AspectFill"></Image>
+            
+            <StackLayout Orientation="Vertical">
+              <Label Text="{Binding Title}"
+                     FontSize="24"
+                     FontAttributes="Bold"></Label>
+
+              <Label Text="{Binding Description}" LineBreakMode="TailTruncation"></Label>
+            </StackLayout>
+            
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
   </ListView>
 
 </ContentPage>

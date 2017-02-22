@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using MICCookBook.XFCore.Services;
+using MICCookBook.XFCore.Services.Navigation;
 
 namespace MICCookBook.XFCore.ViewModels
 {

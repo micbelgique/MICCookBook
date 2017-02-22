@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
+using MICCookBook.XFCore.Services.Navigation;
 using Xamarin.Forms;
 
 namespace MICCookBook.XFCore.Views
 {
-    public partial class SplashScreen : ContentPage
+    public partial class SplashScreen : ContentPage, IPageRoot
     {
         public SplashScreen()
         {
