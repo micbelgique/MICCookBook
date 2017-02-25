@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MICCookBook.Web.Models;
+using MICCookBook.Web.ViewModels;
 
 namespace MICCookBook.Web.Controllers
 {

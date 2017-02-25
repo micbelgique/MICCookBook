@@ -3,18 +3,11 @@ using Xamarin.Forms;
 
 namespace MICCookBook.XFCore.Views
 {
-    public partial class RecipeList : ContentPage
+    public partial class RecipeListView : ContentPage
     {
-        public RecipeList()
+        public RecipeListView()
         {
             InitializeComponent();
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            var vm = this.BindingContext as MainPageViewModel;
-            vm.OnAppearing();
         }
     }
 }

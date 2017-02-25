@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Threading;
+using System.Web;
 using System.Web.Mvc;
 using MICCookBook.Web.Repository;
 using Microsoft.AspNet.Identity.Owin;
@@ -15,6 +16,8 @@ namespace MICCookBook.Web.Controllers
         {
             base.OnActionExecuting(filterContext);
 
+            //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fr-FR");
+            //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr");
             UnitOfWork = HttpContext.GetOwinContext().Get<UnitOfWork>();
         }
     }

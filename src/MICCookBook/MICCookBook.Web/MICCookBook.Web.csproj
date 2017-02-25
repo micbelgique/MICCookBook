@@ -215,6 +215,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Globalization\UI\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201701260924140_Init.cs" />
     <Compile Include="Migrations\201701260924140_Init.Designer.cs">
       <DependentUpon>201701260924140_Init.cs</DependentUpon>
@@ -238,6 +243,11 @@
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\RecipeRepository.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
+    <Compile Include="Globalization\DataAnnotations\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\IFileStorageService.cs" />
     <Compile Include="Services\LocalFileStorageService.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
@@ -293,7 +303,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -336,6 +348,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Resources\" />
     <Folder Include="Views\Resource\" />
   </ItemGroup>
   <ItemGroup>
@@ -346,6 +359,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Globalization\UI\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Globalization\UI\Resources.fr.resx" />
     <EmbeddedResource Include="Migrations\201701260924140_Init.resx">
       <DependentUpon>201701260924140_Init.cs</DependentUpon>
     </EmbeddedResource>
@@ -354,6 +372,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701291507534_CreatedAndModifiedOn.resx">
       <DependentUpon>201701291507534_CreatedAndModifiedOn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Globalization\DataAnnotations\Resources.fr.resx" />
+    <EmbeddedResource Include="Globalization\DataAnnotations\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
