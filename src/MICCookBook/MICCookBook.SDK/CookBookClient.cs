@@ -17,7 +17,6 @@ namespace MICCookBook.SDK
         public CookBookClient()
         {
             HttpClient = new HttpClient();
-            //HttpClient.BaseAddress = new Uri("http://miccookbook.azurewebsites.net/api/", UriKind.Absolute);
             HttpClient.MaxResponseContentBufferSize = 256000;
         }
 

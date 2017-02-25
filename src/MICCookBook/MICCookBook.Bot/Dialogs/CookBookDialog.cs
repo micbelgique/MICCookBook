@@ -1,4 +1,5 @@
-﻿using MICCookBook.SDK.Model;
+﻿using MICCookBook.SDK;
+using MICCookBook.SDK.Model;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
@@ -77,61 +78,58 @@ namespace MICCookBook.Bot.Dialogs
         {
             List<Recipe> recipes;
 
-            using (var client = new HttpClient())
+            //     var x = await httpResponse.Content.ReadAsStringAsync();
+            //    recipes = JsonConvert.DeserializeObject<List<Recipe>>(x);
+
+            CookBookClient client = new CookBookClient();
+            recipes = await client.GetRecipes();
+
+            Activity replyToConversation = _message.CreateReply("Voici ce que je te propose");
+            replyToConversation.Recipient = _message.From;
+            replyToConversation.Type = "message";
+            replyToConversation.Attachments = new List<Attachment>();
+
+            foreach (var recipe in recipes)
             {
-                var httpResponse = await client.GetAsync(ConfigurationManager.AppSettings["ApiUrlRecipes"]);
+                List<CardAction> cardButtons = new List<CardAction>();
 
-                if (httpResponse.StatusCode == HttpStatusCode.OK)
-
+                CardAction plButtonInfo = new CardAction()
                 {
-                    var x = await httpResponse.Content.ReadAsStringAsync();
-                    recipes = JsonConvert.DeserializeObject<List<Recipe>>(x);
-
-                    Activity replyToConversation = _message.CreateReply("Voici ce que je te propose");
-                    replyToConversation.Recipient = _message.From;
-                    replyToConversation.Type = "message";
-                    replyToConversation.Attachments = new List<Attachment>();
-
-                    foreach (var recipe in recipes)
-                    {
-                        List<CardAction> cardButtons = new List<CardAction>();
-
-                        CardAction plButtonInfo = new CardAction()
-                        {
-                            Value = $"{ConfigurationManager.AppSettings["WebAppUrl"]}",
-                            Type = "openUrl",
-                            Title = "Voir sur le site"
-                        };
-                        cardButtons.Add(plButtonInfo);
-                        CardAction plButtonOk = new CardAction()
-                        {
-                            Value = "Donne moi des infos sur cette recette",
-                            Type = "imBack",
-                            Title = "Commencer !"
-                        };
-                        cardButtons.Add(plButtonOk);
+                    Value = $"{ConfigurationManager.AppSettings["WebAppUrl"]}",
+                    Type = "openUrl",
+                    Title = "Voir sur le site"
+                };
+                cardButtons.Add(plButtonInfo);
+                CardAction plButtonOk = new CardAction()
+                {
+                    Value = "Donne moi des infos sur cette recette",
+                    Type = "imBack",
+                    Title = "Commencer !"
+                };
+                cardButtons.Add(plButtonOk);
 
 
-                        List<CardImage> cardImages = new List<CardImage>();
-                        cardImages.Add(new CardImage(url: $"{ ConfigurationManager.AppSettings["WebAppUrl"] }{recipe.Picture}"));
+                List<CardImage> cardImages = new List<CardImage>();
+                cardImages.Add(new CardImage(url: $"{ ConfigurationManager.AppSettings["WebAppUrl"] }{recipe.Picture}"));
 
-                        HeroCard plCard = new HeroCard()
-                        {
-                            Title = recipe.Title,
-                            Text = recipe.Description,
-                            // Subtitle = recipe.,  ToDo: Ajouter l'auteur de la recette
-                            Images = cardImages,
-                            Buttons = cardButtons
-                        };
+                HeroCard plCard = new HeroCard()
+                {
+                    Title = recipe.Title,
+                    Text = recipe.Description,
+                    // Subtitle = recipe.,  ToDo: Ajouter l'auteur de la recette
+                    Images = cardImages,
+                    Buttons = cardButtons
+                };
 
-                        Attachment plAttachment = plCard.ToAttachment();
-                        replyToConversation.Attachments.Add(plAttachment);
-                    }
+                Attachment plAttachment = plCard.ToAttachment();
 
-                    await context.PostAsync(replyToConversation);
-                    context.Wait(MessageReceived);
-                }
+                replyToConversation.AttachmentLayout = AttachmentLayoutTypes.Carousel;
+                replyToConversation.Attachments.Add(plAttachment);
+
             }
+
+            await context.PostAsync(replyToConversation);
+            context.Wait(MessageReceived);
         }
 
         [LuisIntent("GetRecipeDetails")]
