@@ -25,10 +25,10 @@ namespace MICCookBook.Bot
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                await Conversation.SendAsync(activity, () => new CookBookDialog(
+                await Conversation.SendAsync(activity, () => new MainDialog(
                     new LuisService(new LuisModelAttribute(
-                        ConfigurationManager.AppSettings["ModelId"],
-                        ConfigurationManager.AppSettings["SubscriptionKey"]))));
+                        ConfigurationManager.AppSettings["CookBookLuisModelId"],
+                        ConfigurationManager.AppSettings["CookBookLuisSubscriptionKey"]))));
             }
             else
             {
