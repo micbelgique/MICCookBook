@@ -62,7 +62,7 @@ namespace MICCookBook.Bot.Dialogs
                 var action = OrderButtonAction.FromJson(activity.Text);
                 if (action.Type == 2)
                 {
-                    var recipe = await client.GetRecipeDetails(activity.Id);
+                    var recipe = await client.GetRecipe(action.Value);
                     await context.PostAsync($"{recipe.Description}");
                 }
             }
@@ -70,8 +70,6 @@ namespace MICCookBook.Bot.Dialogs
             {
                 // todo: ewww
             }
-            await context.PostAsync("Problème");
-            // await DisplayItems(context); todo: display item list again?
         }
 
         #endregion

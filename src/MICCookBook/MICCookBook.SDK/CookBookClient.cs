@@ -37,12 +37,12 @@ namespace MICCookBook.SDK
             }
         }
 
-        public async Task<Recipe> GetRecipeDetails(string id)
+        public async Task<Recipe> GetRecipe(int id)
         {
             // TODO : make this more generic
             try
             {
-                var response = await HttpClient.GetAsync(new Uri($"http://miccookbook.azurewebsites.net/api/recipes/details/{id}"));
+                var response = await HttpClient.GetAsync(new Uri($"http://miccookbook.azurewebsites.net/api/recipes/{id}"));
                 var content = await response.Content.ReadAsStringAsync();
                 var recipe = JsonConvert.DeserializeObject<Recipe>(content);
                 return recipe;
