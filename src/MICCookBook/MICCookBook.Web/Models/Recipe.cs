@@ -15,7 +15,6 @@ namespace MICCookBook.Web.Models
         public string Picture { get; set; }
 
         // Relationships
-        [ForeignKey("AuthorId")]
         public ApplicationUser Author { get; set; }
         public string AuthorId { get; set; }
 

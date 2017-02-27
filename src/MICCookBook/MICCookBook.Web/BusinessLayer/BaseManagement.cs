@@ -1,13 +1,17 @@
 ﻿using System;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using MICCookBook.Web.Repository;
 
 namespace MICCookBook.Web.BusinessLayer
 {
     public class BaseManagement<T> : IDisposable
         where T : IDisposable
     {
-        public IOwinContext OwinContext { get; set; }
+        private UnitOfWork _unitOfWork;
+
+        protected IOwinContext OwinContext { get; set; }
+        protected UnitOfWork UnitOfWork => _unitOfWork ?? (_unitOfWork = OwinContext.Get<UnitOfWork>());
 
         public BaseManagement(IOwinContext owinContext)
         {

@@ -1,13 +1,11 @@
-﻿using System.Data.Entity.Core;
-using System.Security.Principal;
+﻿using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
+using MICCookBook.Web.BusinessLayer.Exceptions;
 using MICCookBook.Web.Models;
-using MICCookBook.Web.Repository;
 using MICCookBook.Web.Services;
 using MICCookBook.Web.ViewModels;
-using Microsoft.AspNet.Identity.Owin;
 
 namespace MICCookBook.Web.BusinessLayer
 {
@@ -19,8 +17,6 @@ namespace MICCookBook.Web.BusinessLayer
 
         public async Task CreateNewRecipe(CreateRecipeViewModel model, IPrincipal user)
         {
-            var unitOfWork = OwinContext.Get<UnitOfWork>();
-
             var fileStorageService = new LocalFileStorageService();
             var picturePath = fileStorageService.StoreFile(model.PictureFile);
 
@@ -34,20 +30,18 @@ namespace MICCookBook.Web.BusinessLayer
             };
 
             // insert model in the database
-            await unitOfWork.Recipes.Add(recipe);
+            await UnitOfWork.Recipes.Add(recipe);
 
             // save changes
-            await unitOfWork.SaveChangesAsync();
+            await UnitOfWork.SaveChangesAsync();
         }
 
         public async Task UpdateRecipe(CreateRecipeViewModel model, IPrincipal user)
         {
-            var unitOfWork = OwinContext.Get<UnitOfWork>();
-
             // retrieve model from database
-            var recipe = await unitOfWork.Recipes.GetById(model.Id);
+            var recipe = await UnitOfWork.Recipes.GetById(model.Id);
             if (recipe == null)
-                throw new ObjectNotFoundException("The entry you are looking for doesn't exist in our database.");
+                throw new EntityNotFoundException<Recipe, int>(model.Id, typeof(Recipe));
 
             // update model
             recipe.Title = model.Title;
@@ -60,7 +54,7 @@ namespace MICCookBook.Web.BusinessLayer
             }
 
             // save changes of modified model
-            await unitOfWork.SaveChangesAsync();
+            await UnitOfWork.SaveChangesAsync();
         }
     }
 }

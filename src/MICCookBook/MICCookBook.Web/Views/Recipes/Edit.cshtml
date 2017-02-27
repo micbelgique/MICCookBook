@@ -1,0 +1,33 @@
+﻿@model MICCookBook.Web.ViewModels.CreateRecipeViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Publier une recette</h2>
+
+@using (Html.BeginForm("Edit", "Recipes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title)
+        @Html.TextBoxFor(model => model.Title, new { @class = "form-control", placeholder = "Le titre de votre recette healthy ou pas... plutôt pas d'ailleurs." })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description)
+        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Picture)
+        <input type="file" name="PictureFile" id="PictureFile" accept="image/*" class="form-control" />
+    </div>
+
+    @Html.ValidationSummary(false, "" ,new { @class = "text-danger" })
+
+    <button type="submit" class="btn btn-xl">Mettre à jour</button>
+}

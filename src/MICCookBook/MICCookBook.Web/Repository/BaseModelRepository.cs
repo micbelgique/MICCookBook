@@ -23,9 +23,9 @@ namespace MICCookBook.Web.Repository
             return await Context.Set<T>().ToListAsync();
         }
 
-        public virtual async Task<List<T>> GetAllAsync<TProperty>(Expression<Func<T, TProperty>> path)
+        public virtual async Task<List<T>> GetAllAsync<TProperty>(Expression<Func<T, TProperty>> includePath)
         {
-            return await Context.Set<T>().Include(path).ToListAsync();
+            return await Context.Set<T>().Include(includePath).ToListAsync();
         }
 
         public virtual async Task<T> GetById(int id)
@@ -41,6 +41,11 @@ namespace MICCookBook.Web.Repository
         public async Task<T> Add(T entity)
         {
             return Context.Set<T>().Add(entity);
+        }
+
+        public async Task Delete(T entity)
+        {
+            Context.Set<T>().Remove(entity);
         }
     }
 }

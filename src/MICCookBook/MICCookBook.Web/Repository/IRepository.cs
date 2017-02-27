@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using MICCookBook.Web.Models;
 
 namespace MICCookBook.Web.Repository
 {
@@ -13,5 +12,6 @@ namespace MICCookBook.Web.Repository
         Task<List<T>> GetAllAsync();
         Task<T> GetById(int id);
         Task<T> Add(T entity);
+        Task Delete(T entity);
     }
 }

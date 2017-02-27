@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MICCookBook.XFCore.Views.MenuView" Title="Menu"
+             BindingContext="{Binding Menu, Source={StaticResource Locator}}">
+  <StackLayout>
+    <ListView ItemsSource="{Binding NavigationMenuItems}"
+              RowHeight="60"
+              SeparatorVisibility="None">
+      
+      <ListView.ItemTemplate>
+        
+        <DataTemplate>
+          <ViewCell>
+
+            <StackLayout VerticalOptions="FillAndExpand"
+                         Orientation="Horizontal"
+                         Padding="20,10,0,10" 
+                         Spacing="20">
+              <StackLayout.GestureRecognizers >
+                <TapGestureRecognizer Command="{Binding OnTapCommand}" ></TapGestureRecognizer>
+              </StackLayout.GestureRecognizers>
+
+              <Label Text="{Binding Label}"
+                     FontSize="Medium"
+                     VerticalOptions="Center"
+                     TextColor="Black"/>
+            </StackLayout>
+
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage>

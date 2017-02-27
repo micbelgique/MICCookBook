@@ -1,9 +1,8 @@
+using MICCookBook.Web.Models;
+
 namespace MICCookBook.Web.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MICCookBook.Web.Models.ApplicationDbContext>
     {
@@ -12,7 +11,7 @@ namespace MICCookBook.Web.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(MICCookBook.Web.Models.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

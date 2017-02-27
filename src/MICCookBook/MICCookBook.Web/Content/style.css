@@ -33,3 +33,187 @@ section#contact {
     #portfolio .portfolio-item .portfolio-link .portfolio-picture {
         position: absolute;
     }
+
+
+/* Colors */
+
+
+.text-primary {
+    color: #F47321;
+}
+a {
+  color: #F47321;
+}
+a:hover,
+a:focus,
+a:active,
+a.active {
+  color: #F47300;
+}
+.btn-primary {
+  color: white;
+  background-color: #F47321;
+  border-color: #F47321;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  color: white;
+  background-color: #F47300;
+  border-color: #F68443;
+}
+
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #F47321;
+  border-color: #F47321;
+}
+.btn-primary .badge {
+  color: #F47321;
+  background-color: white;
+}
+.btn-xl {
+  color: white;
+  background-color: #F47321;
+  border-color: #F47321;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 3px;
+  font-size: 18px;
+  padding: 20px 40px;
+}
+
+.btn-xl:hover,
+.btn-xl:focus,
+.btn-xl:active,
+.btn-xl.active,
+.open .dropdown-toggle.btn-xl {
+  color: white;
+  background-color: #F47300;
+  border-color: #F68443;
+}
+
+.btn-xl.disabled,
+.btn-xl[disabled],
+fieldset[disabled] .btn-xl,
+.btn-xl.disabled:hover,
+.btn-xl[disabled]:hover,
+fieldset[disabled] .btn-xl:hover,
+.btn-xl.disabled:focus,
+.btn-xl[disabled]:focus,
+fieldset[disabled] .btn-xl:focus,
+.btn-xl.disabled:active,
+.btn-xl[disabled]:active,
+fieldset[disabled] .btn-xl:active,
+.btn-xl.disabled.active,
+.btn-xl[disabled].active,
+fieldset[disabled] .btn-xl.active {
+  background-color: #F47321;
+  border-color: #F47321;
+}
+.btn-xl .badge {
+  color: #F47321;
+  background-color: white;
+}
+.navbar-custom .navbar-brand {
+  color: #F47321;
+  font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
+}
+
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .navbar-brand:focus,
+.navbar-custom .navbar-brand:active,
+.navbar-custom .navbar-brand.active {
+  color: #F47300;
+}
+.navbar-custom .navbar-toggle {
+  background-color: #F47321;
+  border-color: #F47321;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  color: white;
+  font-size: 12px;
+}
+.navbar-custom .navbar-toggle:hover,
+.navbar-custom .navbar-toggle:focus {
+  background-color: #F47321;
+}
+.navbar-custom .nav li a:hover,
+.navbar-custom .nav li a:focus {
+  color: #F47321;
+  outline: none;
+}
+.navbar-custom .navbar-nav > .active > a {
+  border-radius: 0;
+  color: white;
+  background-color: #F47321;
+}
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus {
+  color: white;
+  background-color: #F47300;
+}
+#portfolio .portfolio-item .portfolio-link .portfolio-hover {
+  background: rgba(244, 115, 33, 0.7);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all ease 0.5s;
+  -webkit-transition: all ease 0.5s;
+  -moz-transition: all ease 0.5s;
+}
+.timeline > li .timeline-image {
+  left: 0;
+  margin-left: 0;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  z-index: 100;
+  background-color: #F47321;
+  color: white;
+  border-radius: 100%;
+  border: 7px solid #f1f1f1;
+  text-align: center;
+}
+section#contact .form-control:focus {
+  border-color: #F47321;
+  box-shadow: none;
+}
+ul.social-buttons li a:hover,
+ul.social-buttons li a:focus,
+ul.social-buttons li a:active {
+  background-color: #F47321;
+}
+::-moz-selection {
+  text-shadow: none;
+  background: #F47321;
+}
+::selection {
+  text-shadow: none;
+  background: #F47321;
+}
+
+body {
+  webkit-tap-highlight-color: #F47321;
+}

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Microsoft.AspNet.Identity.Owin;
 using MICCookBook.Web.BusinessLayer;
 using MICCookBook.Web.Extensions;
@@ -9,8 +10,10 @@ using MICCookBook.Web.ViewModels;
 
 namespace MICCookBook.Web.Controllers
 {
+    [Authorize]
     public class RecipesController : BaseController
     {
+        [AllowAnonymous]
         // GET: Recipes
         public async Task<ActionResult> Index()
         {
@@ -19,18 +22,24 @@ namespace MICCookBook.Web.Controllers
             return View(recipes);
         }
 
+        [AllowAnonymous]
         // GET: Recipes/Details/5
         public async Task<ActionResult> Details(int id, string slug)
         {
             var unitOfWork = HttpContext.GetOwinContext().Get<UnitOfWork>();
 
             var recipe = await unitOfWork.Recipes.GetById(id);
-            if (recipe != null && recipe.Title.ToSlug() == slug)
+            if (recipe == null)
+                return HttpNotFound();
+
+            // Check the slug and returns a 301 if not correct.
+            var actualSlug = recipe.Title.ToSlug();
+            if (actualSlug != slug)
             {
-                return View(recipe);
+                return RedirectToActionPermanent("Details", new { id, slug = actualSlug });
             }
 
-            return HttpNotFound();
+            return View(recipe);
         }
 
         // GET: Recipes/Create
@@ -45,10 +54,14 @@ namespace MICCookBook.Web.Controllers
         {
             try
             {
-                var recipeManagement = HttpContext.GetOwinContext().Get<RecipeManagement>();
-                await recipeManagement.CreateNewRecipe(model, User);
+                if (ModelState.IsValid)
+                {
+                    var recipeManagement = HttpContext.GetOwinContext().Get<RecipeManagement>();
+                    await recipeManagement.CreateNewRecipe(model, User);
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                return View(model);
             }
             catch
             {
@@ -57,28 +70,30 @@ namespace MICCookBook.Web.Controllers
         }
 
         // GET: Recipes/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var recipe = await UnitOfWork.Recipes.GetById(id);
+
+            var model = new CreateRecipeViewModel
+            {
+                Title = recipe.Title,
+                Id = recipe.Id,
+                Description = recipe.Description,
+                Picture = recipe.Picture
+            };
+
+            return View(model);
         }
 
         // POST: Recipes/Edit/5
         [HttpPost]
-        public async Task<ActionResult> Edit(int id, CreateRecipeViewModel model)
+        public async Task<ActionResult> Edit(CreateRecipeViewModel model)
         {
-            try
-            {
-                // TODO: Add update logic here
-                model.Id = id;
-                var recipeManagement = HttpContext.GetOwinContext().Get<RecipeManagement>();
-                await recipeManagement.UpdateRecipe(model, User);
-                
-                return RedirectToAction("Details", new { id });
-            }
-            catch 
-            {
-                return View();
-            }
+            var recipeManagement = HttpContext.GetOwinContext().Get<RecipeManagement>();
+
+            await recipeManagement.UpdateRecipe(model, User);
+
+            return RedirectToAction("Details", new { model.Id, slug = model.Title.ToSlug() });
         }
 
         // GET: Recipes/Delete/5

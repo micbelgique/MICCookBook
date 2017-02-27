@@ -25,5 +25,7 @@
         <input type="file" name="PictureFile" id="PictureFile" accept="image/*" class="form-control" />
     </div>
 
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
     <button type="submit" class="btn btn-xl">Publier</button>
 }

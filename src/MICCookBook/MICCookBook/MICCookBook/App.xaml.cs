@@ -1,22 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using MICCookBook.XFCore.Services.Navigation;
+using MICCookBook.XFCore.Views;
 using Xamarin.Forms;
 
-namespace MICCookBook
+namespace MICCookBook.XFCore
 {
     public partial class App : Application
     {
+        public MasterNavigation Navigation { get; set; }
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MICCookBook.MainPage();
+            Navigation = new MasterNavigation();
+            MainPage = new SplashScreen();
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
             // Handle when your app starts
         }

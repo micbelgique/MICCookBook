@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:MICCookBook.XFCore.Views;assembly=MICCookBook.XFCore"
+             x:Class="MICCookBook.XFCore.Views.MainPage"
+             MasterBehavior="Popover">
+
+  <MasterDetailPage.Detail>
+    <NavigationPage>
+      <x:Arguments>
+        <Page>
+          <views:FeaturedView></views:FeaturedView>
+        </Page>
+      </x:Arguments>
+    </NavigationPage>
+  </MasterDetailPage.Detail>
+
+  <MasterDetailPage.Master>
+    <views:MenuView></views:MenuView>
+  </MasterDetailPage.Master>
+
+</MasterDetailPage>

@@ -49,6 +49,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin.Cors, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity.Hooks, Version=1.2.0.0, Culture=neutral, PublicKeyToken=e22f38667d64ae75, processorArchitecture=MSIL">
@@ -60,12 +64,20 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -186,11 +198,16 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BusinessLayer\BaseManagement.cs" />
+    <Compile Include="BusinessLayer\Exceptions\EntityNotFoundException.cs" />
     <Compile Include="BusinessLayer\RecipeManagement.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\API\Auth\ApplicationOAuthProvider.cs" />
+    <Compile Include="Controllers\API\BaseApiController.cs" />
     <Compile Include="Controllers\API\EvaluationsController.cs" />
+    <Compile Include="Controllers\API\ProfileController.cs" />
     <Compile Include="Controllers\API\RecipesController.cs" />
-    <Compile Include="Controllers\BaseRepository.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ErrorHandlers\EntityNotFoundHandlerAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
@@ -198,6 +215,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Globalization\UI\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201701260924140_Init.cs" />
     <Compile Include="Migrations\201701260924140_Init.Designer.cs">
       <DependentUpon>201701260924140_Init.cs</DependentUpon>
@@ -211,13 +233,21 @@
       <DependentUpon>201701291507534_CreatedAndModifiedOn.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\MigrationsContextFactory.cs" />
     <Compile Include="Models\Evaluation.cs" />
     <Compile Include="Models\IBaseModel.cs" />
+    <Compile Include="Models\IIdentifiable.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Repository\BaseModelRepository.cs" />
+    <Compile Include="Repository\EvaluationRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\RecipeRepository.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
+    <Compile Include="Globalization\DataAnnotations\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\IFileStorageService.cs" />
     <Compile Include="Services\LocalFileStorageService.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
@@ -241,6 +271,7 @@
     <Content Include="Content\img\header.jpg" />
     <Content Include="Content\img\map-image.png" />
     <Content Include="Content\img\team\thomas.jpg" />
+    <Content Include="Content\override\bootstrap.override.css" />
     <Content Include="Views\favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -255,6 +286,9 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\img\recipes\.empty" />
+    <None Include="Properties\PublishProfiles\miccookbook - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\miccookbook - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -267,7 +301,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -305,11 +341,12 @@
     <Content Include="Views\Recipes\Index.cshtml" />
     <Content Include="Views\Recipes\Create.cshtml" />
     <Content Include="Views\Recipes\Details.cshtml" />
+    <Content Include="Views\Recipes\Edit.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\img\recipes\" />
-    <Folder Include="Content\override\" />
+    <Folder Include="Resources\" />
     <Folder Include="Views\Resource\" />
   </ItemGroup>
   <ItemGroup>
@@ -320,6 +357,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Globalization\UI\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Globalization\UI\Resources.fr.resx" />
     <EmbeddedResource Include="Migrations\201701260924140_Init.resx">
       <DependentUpon>201701260924140_Init.cs</DependentUpon>
     </EmbeddedResource>
@@ -328,6 +370,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701291507534_CreatedAndModifiedOn.resx">
       <DependentUpon>201701291507534_CreatedAndModifiedOn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Globalization\DataAnnotations\Resources.fr.resx" />
+    <EmbeddedResource Include="Globalization\DataAnnotations\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
