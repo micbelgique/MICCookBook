@@ -1,5 +1,3 @@
-[![](/doc/assets/the-great-mic-cookook.jpg)]()
-
 The Great **MIC Cookbook** for Modern Applications!
 ===================
 
@@ -7,10 +5,12 @@ Vous vous lancez dans le vaste monde des technologies Microsoft mais ne savez pa
 
 C'est en cuisinant qu'on devient cuisinier ! Alors plongez vos petits doigts encore propres dans ce code, piochez dans les ingrédients pour prendre ce qui vous intéresse, et sortez-nous du four votre premier projet fait main. :cake: :ok_hand:
 
+[![](/doc/assets/the-great-mic-cookook.jpg)]()
 
 > **Note:**
 
-> - Projet en cours de développement.
+> - Projet en cours de développement. 
+> - Clonez le dépôt et allez sur la branche develop pour tester les dernières fonctionnalités.
 > - Les contributions et suggestions sont les bienvenues.
 > - Vous pouvez [contacter les développeurs par mail](mailto:cookbook@mic-belgique.be).
 
@@ -18,20 +18,33 @@ C'est en cuisinant qu'on devient cuisinier ! Alors plongez vos petits doigts enc
 
 Technologies utilisées
 -------------
-Todo
+- ASP.NET MVC5
+- BotFramework
+- Xamarin.Forms + PCL
+- ...
 
-Structure du projet
+Structure de la solution
 -------------
-Todo
+Le projet vise à augmenter la quantité de code partagé. Dans la solution, vous trouverez les projets suivants (cliquez sur les liens pour obtenir plus d'informations sur chaque projet) :
+
+- **MICCookBook.Web** : divisé en plusieurs couches allant de l'accès aux données à une couche plus business, qui est finalement exposée par des contrôleurs MVC pour l'interaction humaine et par des contrôleurs WebAPI pour l'interaction machine-to-machine. 
+- **MICCookBook.SDK** : une librairie facilitant la communication avec la WebAPI en gérant les aspects d'identification et de sérialisation/désérialisation.
+- **MICCookBook.Bot** : un client de type Bot pour permettre d'interagir avec notre application web depuis différents channels tels que Facebook ou Skype. 
+- **MICCookBook.XFCore** : le coeur de nos applications Xamarin.Forms, contenant les interfaces et la logique réutilisable sur chaque plateforme.
+- **MICCookBook.Droid** : le projet Android.
+- **MICCookBook.iOS** : le projet iOS.
+- **MICCookBook.UWP** : le projet Windows.
 
 Roadmap
 -------------
 Dans l'optique de montrer toute une série de chouettes fonctionnalités à implémenter dans vos projets, nous pensons intégrer les points suivants dans un délai indéterminé :
 
+* :white_check_mark: Identification OAuth
+* :white_check_mark: BotFramework Carousel
+* :white_check_mark: Behaviors en Xamarin.Forms
 * Éditeur Markdown pour la description des recettes
 * Identification Facebook
 * ...
-
 
 Auteurs
 -------------
