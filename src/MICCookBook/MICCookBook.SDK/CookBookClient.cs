@@ -17,7 +17,6 @@ namespace MICCookBook.SDK
         public CookBookClient()
         {
             HttpClient = new HttpClient();
-            //HttpClient.BaseAddress = new Uri("http://miccookbook.azurewebsites.net/api/", UriKind.Absolute);
             HttpClient.MaxResponseContentBufferSize = 256000;
         }
 
@@ -35,6 +34,23 @@ namespace MICCookBook.SDK
             {
                 // TODO : Propagate exception to caller
                 return new List<Recipe>();
+            }
+        }
+
+        public async Task<Recipe> GetRecipe(int id)
+        {
+            // TODO : make this more generic
+            try
+            {
+                var response = await HttpClient.GetAsync(new Uri($"http://miccookbook.azurewebsites.net/api/recipes/{id}"));
+                var content = await response.Content.ReadAsStringAsync();
+                var recipe = JsonConvert.DeserializeObject<Recipe>(content);
+                return recipe;
+            }
+            catch (Exception e)
+            {
+                // TODO : Propagate exception to caller
+                return new Recipe();
             }
         }
     }
