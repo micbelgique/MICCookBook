@@ -272,13 +272,16 @@
     <Content Include="Content\img\map-image.png" />
     <Content Include="Content\img\team\thomas.jpg" />
     <Content Include="Content\override\bootstrap.override.css" />
+    <Content Include="Scripts\app\app.home.js" />
+    <Content Include="Scripts\app\app.recipes.js" />
+    <Content Include="Scripts\app\app_pattern.js" />
     <Content Include="Views\favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\style.css" />
     <Content Include="Scripts\agency.js" />
-    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\FontAwesome.otf" />

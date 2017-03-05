@@ -21,8 +21,15 @@ namespace MICCookBook.Web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/agency.js",
-                      "~/Scripts/app.js"));
+                      "~/Scripts/agency.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                      // Setup the JS structure
+                      "~/Scripts/app/app.js",
+                      "~/Scripts/app/app.home.js",
+                      "~/Scripts/app/app.recipes.js",
+                      // Setup the pattern and launch the app execution
+                      "~/Scripts/app/app_pattern.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

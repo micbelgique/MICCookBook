@@ -8,7 +8,8 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 
-<body>
+<body data-controller="@ViewContext.RouteData.Values["controller"].ToString().ToLower()"
+      data-action="@ViewContext.RouteData.Values["action"].ToString().ToLower()">
 
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top affix">
@@ -32,23 +33,23 @@
                     </li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>
-                            <a href="/manage">Mon compte</a>
-                        </li>
-                        <li>
-                            <a href="#" id="logoff">Déconnexion</a>
-                            <div class="hide">
-                                <form id="logoff-form" method="POST" action="/account/logoff">
-                                    @Html.AntiForgeryToken()
-                                </form>
-                            </div>
-                        </li>
+                    <li>
+                        <a href="/manage">Mon compte</a>
+                    </li>
+                    <li>
+                        <a href="#" id="logoff">Déconnexion</a>
+                        <div class="hide">
+                            <form id="logoff-form" method="POST" action="/account/logoff">
+                                @Html.AntiForgeryToken()
+                            </form>
+                        </div>
+                    </li>
                     }
                     else
                     {
-                        <li>
-                            <a href="/account/login">Connexion</a>
-                        </li>
+                    <li>
+                        <a href="/account/login">Connexion</a>
+                    </li>
                     }
                 </ul>
             </div>
@@ -98,6 +99,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/app")
+
     @RenderSection("scripts", required: false)
 </body>
 </html>
