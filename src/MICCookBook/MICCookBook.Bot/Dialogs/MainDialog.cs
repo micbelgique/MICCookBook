@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Web;
 using MICCookBook.SDK.Model;
 using MICCookBook.Bot.Utils;
+using System.Configuration;
+using System.Threading;
 
 namespace MICCookBook.Bot.Dialogs
 {
@@ -19,6 +21,9 @@ namespace MICCookBook.Bot.Dialogs
     {
         [NonSerialized]
         private Activity _activity;
+        [NonSerialized]
+        private IMessageActivity _message;
+
 
         public MainDialog(params ILuisService[] services): base(services)
         {
@@ -28,8 +33,10 @@ namespace MICCookBook.Bot.Dialogs
         [LuisIntent(Intents.None)]
         public async Task None(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync(Dialog.UnknownIntent.Spintax());
-            context.Wait(MessageReceived);
+            await context.Forward(new CommonDialog(new LuisService(new LuisModelAttribute(
+                            ConfigurationManager.AppSettings["CommonLuisModelId"],
+                            ConfigurationManager.AppSettings["CommonLuisSubscriptionKey"]))),
+                    BasicCallback, context.Activity as Activity, CancellationToken.None);
         }
 
         [LuisIntent(Intents.Recipes)]
@@ -46,49 +53,7 @@ namespace MICCookBook.Bot.Dialogs
         [LuisIntent(Intents.Greetings)]
         public async Task Greetings(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync($"{Dialog.Greetings.Spintax()} !");
-            context.Wait(MessageReceived);
-        }
-
-        [LuisIntent(Intents.Home)]
-        public async Task Home(IDialogContext context, LuisResult result)
-        {
-            await context.PostAsync(Dialog.Home.Spintax());
-            context.Wait(MessageReceived);
-        }
-
-        [LuisIntent(Intents.Age)]
-        public async Task Age(IDialogContext context, LuisResult result)
-        {
-            await context.PostAsync(Dialog.Age.Spintax());
-            context.Wait(MessageReceived);
-        }
-
-        [LuisIntent(Intents.Name)]
-        public async Task Name(IDialogContext context, LuisResult result)
-        {
-            await context.PostAsync(Dialog.Name.Spintax());
-            context.Wait(MessageReceived);
-        }
-
-        [LuisIntent(Intents.Joke)]
-        public async Task Joke(IDialogContext context, LuisResult result)
-        {
-            await context.PostAsync(Dialog.Joke.Spintax());
-            context.Wait(MessageReceived);
-        }
-
-        [LuisIntent(Intents.Thanks)]
-        public async Task Thanks(IDialogContext context, LuisResult result)
-        {
-            await context.PostAsync(Dialog.Thanks.Spintax());
-            context.Wait(MessageReceived);
-        }
-
-        [LuisIntent(Intents.Sexe)]
-        public async Task Sexe(IDialogContext context, LuisResult result)
-        {
-            await context.PostAsync(Dialog.Sexe.Spintax());
+            await context.PostAsync($"{DialogCommon.Greet.Spintax()} !");
             context.Wait(MessageReceived);
         }
 
@@ -96,6 +61,11 @@ namespace MICCookBook.Bot.Dialogs
         {
             _activity = (Activity)await item;
             await base.MessageReceived(context, item);
+        }
+
+        private async Task BasicCallback(IDialogContext context, IAwaitable<object> result)
+        {
+            context.Wait(MessageReceived);
         }
     }
 }

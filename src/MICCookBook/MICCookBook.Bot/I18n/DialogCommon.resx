@@ -117,4 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Age" xml:space="preserve">
+    <value>[J'ai exactement {0:%d} jours, {0:%h} heures,{0:%m} minutes et {0:%s} secondes!|Je suis né il y a {0:%d} jours.] :confetti_ball:</value>
+  </data>
+  <data name="Compliment" xml:space="preserve">
+    <value>[Ohhh, tu es trop gentil :blush:|Ohh, arrête tu vas me faire rougir :yum:]</value>
+  </data>
+  <data name="Feelings" xml:space="preserve">
+    <value>[Je vais très bien, merci! J'espère que toi aussi tu vas bien :smile:!]</value>
+  </data>
+  <data name="Greet" xml:space="preserve">
+    <value>[Hello|Salut|Bonjour] :robot:!</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>[J'habite dans le cloud ☁️.]</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>[Je m'appelle|Mon nom est] CooCook, j'ai {0:dd} jours et j'habite dans le cloud!µ</value>
+  </data>
+  <data name="Insult" xml:space="preserve">
+    <value>[C'est pas très très gentil ça :cry:|Désolé, j'essaye de faire de mon mieux :sweat_smile:]</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>[Je m'appelle CooCook.|Mon nom est CooCook]</value>
+  </data>
+  <data name="Robot" xml:space="preserve">
+    <value>[C'est toi le robot!]</value>
+  </data>
+  <data name="Thanks" xml:space="preserve">
+    <value>[Mais il n'y a pas de quoi!|A ton service! :)|Avec plaisir.]</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>[Il est exactement {0:HH\hmm} chez moi :alarm_clock:]</value>
+  </data>
+  <data name="UnknownIntent" xml:space="preserve">
+    <value>[Désolé, je sais que c'est ennuyant mais je n'ai pas compris ce que tu viens d'écrire :confused:|Hum... Je n'ai pas vraiment compris. N'oublie pas que je ne suis qu'un robot (du moins pour le moment :smiling_imp:)|Mh... Je ne suis pas sur de comprendre ce que tu viens de me dire. Je vais l'ajouter à ma liste de phrases à apprendre :nerd:|Désolé, je n'ai pas compris :disappointed:. Je suis toujours entrain d'apprendre votre language!]</value>
+  </data>
 </root>
