@@ -50,7 +50,7 @@ namespace MICCookBook.Web.BusinessLayer
             {
                 var fileStorageService = new LocalFileStorageService();
                 var picturePath = fileStorageService.StoreFile(model.PictureFile);
-                model.Picture = picturePath;
+                recipe.Picture = picturePath;
             }
 
             // save changes of modified model
