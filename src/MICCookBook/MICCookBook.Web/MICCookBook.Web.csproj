@@ -290,8 +290,8 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Content\img\recipes\.empty" />
-    <None Include="Properties\PublishProfiles\miccookbook - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\miccookbook - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\mic-cookbook - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\mic-cookbook - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\miccookbot - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\miccookbot - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

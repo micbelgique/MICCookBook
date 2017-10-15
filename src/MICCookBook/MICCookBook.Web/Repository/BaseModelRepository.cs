@@ -40,12 +40,12 @@ namespace MICCookBook.Web.Repository
 
         public async Task<T> Add(T entity)
         {
-            return Context.Set<T>().Add(entity);
+            return await Task.FromResult(Context.Set<T>().Add(entity));
         }
 
         public async Task Delete(T entity)
         {
-            Context.Set<T>().Remove(entity);
+            await Task.FromResult(Context.Set<T>().Remove(entity));
         }
     }
 }
