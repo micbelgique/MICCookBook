@@ -13,7 +13,7 @@ namespace MICCookBook
         {
             InitializeComponent();
 
-            MainPage = new MICCookBook.MainPage();
+            MainPage = new Views.SplashScreen();
         }
 
         protected override void OnStart()
