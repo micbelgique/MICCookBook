@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace MICCookBook.SDK.Model
+namespace MICCookBook.SDK.Models
 {
     public class Recipe
     {
@@ -15,6 +10,6 @@ namespace MICCookBook.SDK.Model
         public string Picture { get; set; }
 
         [JsonIgnore]
-        public string AbsolutePicture => "miccookbook.azurewebsites.net" + Picture;
+        public string PictureUrl => "http://mic-cookbook.azurewebsites.net" + Picture;
     }
 }

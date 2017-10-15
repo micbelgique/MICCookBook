@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MICCookBook.Controls;assembly=MICCookBook"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="MICCookBook.Views.RecipesPage"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2017"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:viewModels="clr-namespace:MICCookBook.ViewModels;assembly=MICCookBook"
+             d:DataContext="{d:DesignInstance viewModels:RecipesViewModel}"
+             Title="Detail">
+    <ListView
+            ItemsSource="{Binding Recipes}"
+            SeparatorVisibility="None"
+            HasUnevenRows="true"
+            IsPullToRefreshEnabled="True"
+            RefreshCommand="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell >
+                    <Grid RowSpacing="0"
+                              Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="1" />
+                        </Grid.RowDefinitions>
+
+                        <controls:CustomFrame
+                                BackgroundColor="{ DynamicResource BasePageColor }"
+                                HasShadow="True">
+
+                            <StackLayout
+                                BackgroundColor="{ DynamicResource BasePageColor }"
+                                    Spacing="0">
+
+                                <forms:CachedImage Source="{Binding PictureUrl}" 
+                                                   HeightRequest="150"
+                                                   DownsampleHeight="150"
+                                                   Aspect="AspectFill"></forms:CachedImage>
+                                
+                                <Label FontAttributes="Bold" Text="{Binding Title}"></Label>
+
+                                <Label FontAttributes="Italic" Text="{Binding Description}"></Label>
+
+                            </StackLayout>
+                        </controls:CustomFrame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+        <ListView.Footer>
+
+            <Grid>
+
+                <Label Text="Charger plus" FontAttributes="Bold" TextColor="{StaticResource AccentColor}" HorizontalOptions="Center" IsVisible="False">
+
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsLoadingMore}" Value="False">
+                            <Setter Property="IsVisible" Value="True"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding LoadMoreCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <ActivityIndicator
+                        IsRunning="{Binding IsLoadingMore}"
+                        HorizontalOptions="Center"/>
+
+            </Grid>
+        </ListView.Footer>
+    </ListView>
+</ContentPage>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using MICCookBook.SDK.Model;
+using MICCookBook.SDK.Models;
 using Newtonsoft.Json;
 
 namespace MICCookBook.SDK
@@ -16,8 +16,11 @@ namespace MICCookBook.SDK
 
         public CookBookClient()
         {
-            HttpClient = new HttpClient();
-            HttpClient.MaxResponseContentBufferSize = 256000;
+            HttpClient = new HttpClient
+            {
+                MaxResponseContentBufferSize = 256000,
+                BaseAddress = new Uri("http://mic-cookbook.azurewebsites.net")
+            };
         }
 
         public async Task<List<Recipe>> GetRecipes()
@@ -25,7 +28,7 @@ namespace MICCookBook.SDK
             // TODO : make this more generic
             try
             {
-                var response = await HttpClient.GetAsync(new Uri("http://miccookbook.azurewebsites.net/api/recipes"));
+                var response = await HttpClient.GetAsync("/api/recipes");
                 var content = await response.Content.ReadAsStringAsync();
                 var recipes = JsonConvert.DeserializeObject<List<Recipe>>(content);
                 return recipes;
@@ -42,7 +45,7 @@ namespace MICCookBook.SDK
             // TODO : make this more generic
             try
             {
-                var response = await HttpClient.GetAsync(new Uri($"http://miccookbook.azurewebsites.net/api/recipes/{id}"));
+                var response = await HttpClient.GetAsync($"api/recipes/{id}");
                 var content = await response.Content.ReadAsStringAsync();
                 var recipe = JsonConvert.DeserializeObject<Recipe>(content);
                 return recipe;

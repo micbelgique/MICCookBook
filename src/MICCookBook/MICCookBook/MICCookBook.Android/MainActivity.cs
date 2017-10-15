@@ -1,11 +1,7 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using FFImageLoading.Forms.Droid;
 
 namespace MICCookBook.Droid
 {
@@ -16,6 +12,8 @@ namespace MICCookBook.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+
+            CachedImageRenderer.Init(); //Initializing FFImageLoading
 
             base.OnCreate(bundle);
 

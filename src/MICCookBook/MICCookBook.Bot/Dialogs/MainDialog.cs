@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-using MICCookBook.SDK.Model;
 using MICCookBook.Bot.Utils;
 
 namespace MICCookBook.Bot.Dialogs

@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using MICCookBook.Navigation;
 using Xamarin.Forms;
 
 namespace MICCookBook.Views
@@ -11,7 +10,7 @@ namespace MICCookBook.Views
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
@@ -24,6 +23,10 @@ namespace MICCookBook.Views
                     Title.TranslateTo(0, 0, 1000, Easing.SinOut)
                 });
             });
+
+            await Task.Delay(2500);
+
+            Application.Current.MainPage = new MasterDetailPage();
         }
     }
 }

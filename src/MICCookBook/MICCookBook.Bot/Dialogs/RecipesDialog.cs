@@ -1,6 +1,5 @@
 ﻿using MICCookBook.Bot.I18n;
 using MICCookBook.SDK;
-using MICCookBook.SDK.Model;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
@@ -14,6 +13,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
+using MICCookBook.SDK.Models;
 
 namespace MICCookBook.Bot.Dialogs
 {
