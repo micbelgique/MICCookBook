@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="MICCookBook.Universal.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MICCookBook.Universal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:portable="using:FontAwesome.Portable"
+    xmlns:views="using:MICCookBook.Universal.Views"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Menu}"
+    mc:Ignorable="d">
+    
+    <SplitView DisplayMode="Inline" OpenPaneLength="150" 
+               IsPaneOpen="True" CompactPaneLength="50"
+               Content="{Binding Frame}">
+        <SplitView.Pane>
+            <ListView x:Name="MenuListView" ItemsSource="{Binding MenuItems}" SelectedItem="{Binding SelectedMenu, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock portable:FontAwesome.Symbol="{Binding Icon}" VerticalAlignment="Center" Margin="0,0,10,0" ></TextBlock>
+                            <TextBlock Grid.Column="1" Text="{Binding Label}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </SplitView.Pane>
+    </SplitView>
+
+</Page>
