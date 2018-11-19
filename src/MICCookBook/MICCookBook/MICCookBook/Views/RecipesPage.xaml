@@ -9,9 +9,10 @@
              mc:Ignorable="d"
              xmlns:viewModels="clr-namespace:MICCookBook.ViewModels;assembly=MICCookBook"
              d:DataContext="{d:DesignInstance viewModels:RecipesViewModel}"
-             Title="Detail">
+             Title="{Binding Title}">
     <ListView
             ItemsSource="{Binding Recipes}"
+            ItemSelected="ListView_ItemSelectedAsync"
             SeparatorVisibility="None"
             HasUnevenRows="true"
             IsPullToRefreshEnabled="True"

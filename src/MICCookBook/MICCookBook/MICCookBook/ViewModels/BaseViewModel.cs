@@ -6,6 +6,19 @@ namespace MICCookBook.ViewModels
 {
     public class BaseViewModel : IViewModel
     {
+        private string title;
+        public string Title
+        {
+            get => title;
+            set
+            {
+                if (title == value)
+                    return;
+                title = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public virtual Task OnAppearing()
         {
             return Task.FromResult(0);

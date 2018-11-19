@@ -1,4 +1,6 @@
-﻿using MICCookBook.ViewModels;
+﻿using MICCookBook.SDK.Models;
+using MICCookBook.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MICCookBook.Views
@@ -21,6 +23,17 @@ namespace MICCookBook.Views
         protected override void OnDisappearing()
         {
             ((IViewModel)BindingContext).OnDisappearing();
+        }
+
+        private async void ListView_ItemSelectedAsync(object sender, SelectedItemChangedEventArgs e)
+        {
+            var recipe = e.SelectedItem as Recipe;
+            if (recipe == null)
+                return;
+
+            await Navigation.PushAsync(new RecipeDetailsPage(recipe));
+
+            ((ListView)sender).SelectedItem = null;
         }
     }
 }

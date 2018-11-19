@@ -30,6 +30,7 @@ namespace MICCookBook.ViewModels
         {
             _cookBookClient = new CookBookClient();
 
+            Title = "Recipes";
             Recipes = new ObservableCollection<Recipe>();
 
             RefreshCommand = new Command(async () => await Load());
